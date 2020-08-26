@@ -42,7 +42,8 @@ class ThermoData:
             f.seek(0)
             for i in d:
                 num=i.count(' ')
-                if num == 3:
+                n=len(i.split("/")[0])
+                if num == 3 and n == 2:
                     f.write(i)
             f.truncate()
 
@@ -67,7 +68,7 @@ class ThermoData:
 
 #function to create the needed plots
 def plotSingleGraph(pis, therm_var):
-    sns.set_palette(sns.color_palette("hls", 20))
+    sns.set_palette(sns.hls_palette(12, l=.3, s=.8))
     fig, ax = plt.subplots()
     for pi in pis:
         if therm_var == "temperature":
@@ -110,19 +111,19 @@ def getDataFromAllPi():
 
 def plotDataFromAllPi():
     all_pi = getDataFromAllPi()
-    printRunTimes(all_pi)
+    #printRunTimes(all_pi)
     plotSingleGraph(all_pi, "temperature")
     plotSingleGraph(all_pi, "pressure")
     plotSingleGraph(all_pi, "humidity")
 
 #main function
 if __name__ == "__main__":
-    pi_A = ThermoData("DataLog(A).txt")
-    pi_B = ThermoData("DataLog(B).txt")
-    pi_C = ThermoData("DataLog(C).txt")
-    all_pi = [pi_B,pi_C]
+  #  pi_A = ThermoData("DataLog(A).txt")
+  #  pi_B = ThermoData("DataLog(B).txt")
+  #  pi_C = ThermoData("DataLog(C).txt")
+  #  all_pi = [pi_A, pi_B, pi_C]
   #  printRunTimes(all_pi)
-    plotSingleGraph(all_pi, "temperature")
+  #  plotSingleGraph(all_pi, "temperature")
   #  plotSingleGraph(all_pi, "pressure")
   #  plotSingleGraph(all_pi, "humidity")
-  # plotDataFromAllPi()
+    plotDataFromAllPi()
