@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-fname="DataLog(E).txt"
+fname="DataLog(B).txt"
 #countb=[]
 #counta=[]
 
@@ -10,8 +10,9 @@ with open(fname, "r+") as f:
     f.seek(0)
     for i in d:
         num=i.count(' ')
+        n=len(i.split("/")[0])
  #       countb.append(num)
-        if num == 3:
+        if num == 3 and n > 2:
             f.write(i)
  #           counta.append(num)
     f.truncate()
